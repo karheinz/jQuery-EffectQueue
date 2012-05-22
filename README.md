@@ -1,7 +1,7 @@
 jQuery-EffectQueue
 ==================
 
-Runs jQuery effects in order.
+Run jQuery effects in order.
 
 The following lines show how to use it (coffee-script):
 
@@ -21,4 +21,4 @@ The following lines show how to use it (coffee-script):
 Notes:
 
 * A queue can be reused.
-* Don't use `remove()` as callback, use `detach()` instead!
+* Don't use `remove()` as callback for effects, use `detach()` instead!
