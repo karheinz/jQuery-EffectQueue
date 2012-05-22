@@ -14,7 +14,7 @@ The following lines show how to use it (coffee-script):
     queue.enqueue( -> effect8() )
     queue.enqueue( -> effect9() )
 
-    # Flush the queue and add a callback.
+    # Flush the queue and alert when all effects were executed.
     queue.flush().then( -> alert "Over!" )
 
 
