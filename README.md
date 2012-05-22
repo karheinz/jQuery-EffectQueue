@@ -1,7 +1,7 @@
 jQuery-EffectQueue
 ==================
 
-Run jQuery effects in order.
+Run jQuery effects in sequence.
 
 The following lines show how to use it (coffee-script):
 
