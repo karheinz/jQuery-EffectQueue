@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>EffectQueue Example 1</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+      type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.3.1/coffee-script.min.js"
+      type="text/javascript"></script>
+    <script src="../effect_queue.js" type="text/javascript"></script>
+    <script type="text/coffeescript">
+      $( document ).ready ->
+        window.queue = new EffectQueue()
+
+        window.go = ->
+          queue.enqueue( -> $( "#left" ).slideToggle( "slow" ) )
+          queue.enqueue( -> $( "#right" ).slideToggle( "slow" ) )
+          queue.enqueue( [
+            -> $( "#left" ).slideToggle( "slow" ),
+            -> $( "#right" ).slideToggle( "slow" )
+          ] )
+          queue.enqueue( -> $( "#right" ).slideToggle( "slow" ) )
+          queue.enqueue( -> $( "#left" ).slideToggle( "slow" ) )
+          queue.enqueue( [
+            -> $( "#left" ).slideToggle( "slow" ),
+            -> $( "#right" ).slideToggle( "slow" )
+          ] )
+
+          queue.flush().then( -> alert "Over!" )
+
+        # Prepare DOM.
+        $( "#left" ).hide()
+        $( "#right" ).hide()
+
+        $( "a" ).bind "click",
+          ( event ) =>
+            event.preventDefault()
+            go()
+    </script>
+    <style type="text/css">
+      div { width: 75px; height: 200px; float: left; text-align: center; }
+      #left { background-color: red; }
+      #right { background-color: blue; }
+    </style>
+  </head>
+  <body>
+    <div style="width: 100px;"><p><a href="">Lets go!</a></p></div>
+    <div></div>
+    <div><div id="left"></div></div>
+    <div><div></div></div>
+    <div><div id="right"></div></div>
+  </body>
+</html>
